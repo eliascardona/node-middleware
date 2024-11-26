@@ -4,10 +4,8 @@ const extenseFormController = async (req, res) => {
   try {
     const formData = req.body
     const result = await processExtenseForm(formData)
-    const responseFmt = JSON.stringify({SERVER_BODY: result})
-    console.log(responseFmt)
 
-    return res.status(200).send(responseFmt)
+    return res.json({ SERVER_BODY: result })
 
   } catch (err) {
     let fmt = JSON.stringify({ SERVER_ERR: `${err}` })

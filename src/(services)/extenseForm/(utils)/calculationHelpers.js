@@ -8,64 +8,64 @@ const ENTITIES_ENUM = {
     section2: {
         sectionId: 'workCharacteristics',
         jobSatisfaction: 8,
-        workEnvironment: "Supportive",
+        workEnvironment: 8,
     },
     section3: {
         sectionId: 'familySystemFactors',
-        familySupport: "Good",
+        familySupport: 3,
         numberOfDependents: 3,
     },
     section4: {
         sectionId: 'socioCulturalEconomicFactors',
         income: 4500,
-        educationLevel: "Bachelor's",
-        employmentStatus: "Full-time",
+        educationLevel: 5,
+        employmentStatus: 2,
     },
     section5: {
         sectionId: 'generalHealthStatus',
-        healthStatus: "Good",
-        chronicConditions: ["None"],
-        recentHospitalization: false,
+        healthStatus: 3,
+        chronicConditions: [1, 2, 3],
+        recentHospitalization: 1,
     },
     section6: {
         sectionId: 'universalSelfCare',
-        selfCareHabits: "Regular Exercise",
-        sleepQuality: "Good",
+        selfCareHabits: 2,
+        sleepQuality: 2,
     },
     section7: {
         sectionId: 'cardiovascularSystem',
-        heartCondition: "None",
-        bloodPressure: 120,
+        heartCondition: 10,
+        bloodPressure: 3,
     },
     section8: {
         sectionId: 'nutrition',
         dailyFruitVegetableIntake: 5,
-        waterIntake: "Adequate",
+        waterIntake: 1,
     },
     section9: {
         sectionId: 'lifestyle',
-        activityLevel: "Moderate",
-        restQuality: "Good",
+        activityLevel: 2,
+        restQuality: 2,
     },
     section10: {
         sectionId: 'auditoryVisualSystem',
-        hearingCondition: "Normal",
-        visionCondition: "Normal",
+        hearingCondition: 2,
+        visionCondition: 2,
     },
     section11: {
         sectionId: 'lifeThreateningRiskPrevention',
-        smokingStatus: "Non-smoker",
-        alcoholConsumption: "Occasional",
+        smokingStatus: 2,
+        alcoholConsumption: 2,
     },
     section12: {
         sectionId: 'environmentalFactors',
-        workEnvironmentQuality: "Good",
-        noiseLevel: "Low",
+        workEnvironmentQuality: 2,
+        noiseLevel: 2,
     },
     section13: {
         sectionId: 'promotionOfHumanFunctioning',
-        mentalHealth: "Stable",
-        socialInteractionLevel: "High",
+        mentalHealth: 4,
+        socialInteractionLevel: 4,
     }
 }
 
@@ -87,18 +87,30 @@ const calculateScore = (originalSectionIdentifier, trustedDataFields) => {
 
     const attrbs = ENTITIES_ENUM[originalSectionIdentifier]
 
-    for (const [k] of Object.entries(attrbs)) {
-        if (trustedDataFields[k] !== undefined) {
+    for (let [k, v] of Object.entries(attrbs)) {
+        if (k === 'income') {
+            continue
+        }
+        if (trustedDataFields[k] != null) {
             targetScores.push(trustedDataFields[k])
         }
     }
-
     let total = 0
-    targetScores.forEach((el, i) => {
-        if(typeof el === 'number') {
-            total += el
-        }
-    })
+
+    if (targetScores.length) {
+        targetScores.forEach((el, i) => {
+            if(typeof el === 'number') {
+                total += el
+            }
+            if (Array.isArray(el)) {
+                el.map((el, i, arr) => {
+                    if (arr.length > 6) {
+                        total -= 5
+                    }
+                })
+            }
+        })
+    }    
 
     return total
 }

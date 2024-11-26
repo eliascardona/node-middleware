@@ -15,7 +15,7 @@ app.use(function(req, res, next) {
 })
 /*  middleware code's END */
 
-app.use('/', (req, res) => mainRouter(req, res))
+app.use('/', mainRouter)
 
 
 app.use((err, req, res, next) => {

@@ -6,8 +6,8 @@ const { scoreCalculation } = require('./extenseForm/scoreCalculation')
 const processExtenseForm = async (formData) => {
   const validationResults = {}
 
-  for (const [sectionKey, sectionData] of Object.entries(formData)) {
-    const schema = EXPECTED_INPUT_SCHEMA[sectionKey]
+  for (let [sectionKey, sectionData] of Object.entries(formData)) {
+    let schema = EXPECTED_INPUT_SCHEMA[sectionKey]
     if (!schema) {
       validationResults[sectionKey] = {
         status: 'error',
@@ -16,11 +16,11 @@ const processExtenseForm = async (formData) => {
       continue
     }
 
-    const validate = ajv.compile(schema)
-    const valid = validate(sectionData)
+    let validate = ajv.compile(schema)
+    let valid = validate(sectionData)
 
     if (valid) {
-      const score = scoreCalculation(sectionKey, sectionData.sectionId, sectionData);
+      let score = scoreCalculation(sectionKey, sectionData.sectionId, sectionData);
       validationResults[sectionKey] = {
         status: 'valid',
         score,
