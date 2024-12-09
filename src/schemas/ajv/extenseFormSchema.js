@@ -1,139 +1,156 @@
-const section1 = {
-  type: 'object',
-  properties: {
-    sectionId: { type: 'string', const: 'identification' },
-    employeeId: { type: 'string' },
-    name: { type: 'string' },
-    age: { type: 'number', minimum: 18 },
-  },
-  required: ['sectionId', 'employeeId', 'name', 'age'],
-  additionalProperties: false,
+const NOMBRE_SECCION = {
+  IDENTIFICACION: 'identificacion',
+  CONDICIONES_LABORALES: 'condiciones_laborales',
+  FACTORES_FAMILIARES: 'factores_familiares',
+  FACTORES_SOCIOCULTURALES: 'factores_socioculturales',
+  SALUD_GENERAL: 'salud_general',
+  AUTOCUIDADO_UNIVERSAL: 'autocuidado_universal',
+  SALUD_CARDIOVASCULAR: 'salud_cardiovascular',
+  NUTRICION: 'nutricion',
+  ESTILO_DE_VIDA: 'estilo_de_vida',
+  SALUD_AUDIOVISUAL: 'salud_audiovisual',
+  PREVENCION_DE_RIESGOS: 'prevencion_de_riesgos',
+  FACTORES_AMBIENTALES: 'factores_ambientales',
+  PROMOCION_HUMANA: 'promocion_humana',
 }
+
+// const section1 = {
+//   type: 'object',
+//   properties: {
+//     sectionId: { type: 'string', const: NOMBRE_SECCION.IDENTIFICACION },
+//     employeeId: { type: 'string' },
+//     name: { type: 'string' },
+//     age: { type: 'number', minimum: 18 },
+//   },
+//   required: ['sectionId', 'employeeId', 'name', 'age'],
+//   
+// }
 const section2 = {
   type: 'object',
   properties: {
-    sectionId: { type: 'string', const: 'workCharacteristics' },
-    jobSatisfaction: { type: 'number', minimum: 0, maximum: 10 },
-    workEnvironment: { type: 'number', minimum: 0 },
+    sectionId: { type: 'string', const: NOMBRE_SECCION.CONDICIONES_LABORALES },
+    satisfaccionLaboral: { type: 'number', minimum: 0, maximum: 10 },
+    ambienteLaboral: { type: 'number', minimum: 0 },
   },
-  required: ['sectionId', 'jobSatisfaction', 'workEnvironment'],
-  additionalProperties: false,
+  required: ['sectionId', 'satisfaccionLaboral', 'ambienteLaboral'],
+  
 }
 const section3 = {
   type: 'object',
   properties: {
-    sectionId: { type: 'string', const: 'familySystemFactors' },
-    familySupport: { type: 'number', minimum: 0 },
-    numberOfDependents: { type: 'number', minimum: 0 },
+    sectionId: { type: 'string', const: NOMBRE_SECCION.FACTORES_FAMILIARES },
+    apoyoFamiliar: { type: 'number', minimum: 0 },
+    numeroDeDependientes: { type: 'number', minimum: 0 },
   },
-  required: ['sectionId', 'familySupport', 'numberOfDependents'],
-  additionalProperties: false,
+  required: ['sectionId', 'apoyoFamiliar', 'numeroDeDependientes'],
+  
 }
 const section4 = {
   type: 'object',
   properties: {
-    sectionId: { type: 'string', const: 'socioCulturalEconomicFactors' },
-    income: { type: 'number', minimum: 0 },
-    educationLevel: { type: 'number', minimum: 0 },
-    employmentStatus: { type: 'number', minimum: 0 },
+    sectionId: { type: 'string', const: NOMBRE_SECCION.FACTORES_SOCIOCULTURALES },
+    ingreso: { type: 'number', minimum: 0 },
+    nivelEducativo: { type: 'number', minimum: 0 },
+    estadoLaboral: { type: 'number', minimum: 0 },
   },
-  required: ['sectionId', 'income', 'educationLevel', 'employmentStatus'],
-  additionalProperties: false,
+  required: ['sectionId', 'ingreso', 'nivelEducativo', 'estadoLaboral'],
+  
 }
 const section5 = {
   type: 'object',
   properties: {
-    sectionId: { type: 'string', const: 'generalHealthStatus' },
-    healthStatus: { type: 'number', minimum: 0 },
-    chronicConditions: { type: 'array', items: { type: 'number' } },
-    recentHospitalization: { type: 'number', minimum: 0 },
+    sectionId: { type: 'string', const: NOMBRE_SECCION.SALUD_GENERAL },
+    estadoDeSalud: { type: 'number', minimum: 0 },
+    condicionesCronicas: { type: 'array', items: { type: 'number' } },
+    hospitalizacionReciente: { type: 'number', minimum: 0 },
   },
-  required: ['sectionId', 'healthStatus', 'chronicConditions', 'recentHospitalization'],
-  additionalProperties: false,
+  required: ['sectionId', 'estadoDeSalud'],
+  
 }
 const section6 = {
   type: 'object',
   properties: {
-    sectionId: { type: 'string', const: 'universalSelfCare' },
-    selfCareHabits: { type: 'number', minimum: 0 },
-    sleepQuality: { type: 'number', minimum: 0 },
+    sectionId: { type: 'string', const: NOMBRE_SECCION.AUTOCUIDADO_UNIVERSAL },
+    habitosDeAutocuidado: { type: 'number', minimum: 0 },
+    calidadDelSueno: { type: 'number', minimum: 0 },
   },
-  required: ['sectionId', 'selfCareHabits', 'sleepQuality'],
-  additionalProperties: false,
+  required: ['sectionId', 'habitosDeAutocuidado', 'calidadDelSueno'],
+  
 }
 const section7 = {
   type: 'object',
   properties: {
-    sectionId: { type: 'string', const: 'cardiovascularSystem' },
-    heartCondition: { type: 'number', minimum: 0 },
-    bloodPressure: { type: 'number', minimum: 0, minimum: 0 },
+    sectionId: { type: 'string', const: NOMBRE_SECCION.SALUD_CARDIOVASCULAR },
+    condicionCardiaca: { type: 'number', minimum: 0 },
+    presionArterial: { type: 'number', minimum: 0 },
   },
-  required: ['sectionId', 'heartCondition', 'bloodPressure'],
-  additionalProperties: false,
+  required: ['sectionId', 'condicionCardiaca', 'presionArterial'],
+  
 }
 const section8 = {
   type: 'object',
   properties: {
-    sectionId: { type: 'string', const: 'nutrition' },
-    dailyFruitVegetableIntake: { type: 'number', minimum: 0, minimum: 0 },
-    waterIntake: { type: 'number', minimum: 0 },
+    sectionId: { type: 'string', const: NOMBRE_SECCION.NUTRICION },
+    consumoDiarioFrutasVerduras: { type: 'number', minimum: 0 },
+    consumoDeAgua: { type: 'number', minimum: 0 },
   },
-  required: ['sectionId', 'dailyFruitVegetableIntake', 'waterIntake'],
-  additionalProperties: false,
+  required: ['sectionId', 'consumoDiarioFrutasVerduras', 'consumoDeAgua'],
+  
 }
 const section9 = {
   type: 'object',
   properties: {
-    sectionId: { type: 'string', const: 'lifestyle' },
-    activityLevel: { type: 'number', minimum: 0 },
-    restQuality: { type: 'number', minimum: 0 },
+    sectionId: { type: 'string', const: NOMBRE_SECCION.ESTILO_DE_VIDA },
+    nivelDeActividad: { type: 'number', minimum: 0 },
+    calidadDelDescanso: { type: 'number', minimum: 0 },
   },
-  required: ['sectionId', 'activityLevel', 'restQuality'],
-  additionalProperties: false,
+  required: ['sectionId', 'nivelDeActividad', 'calidadDelDescanso'],
+  
 }
 const section10 = {
   type: 'object',
   properties: {
-    sectionId: { type: 'string', const: 'auditoryVisualSystem' },
-    hearingCondition: { type: 'number', minimum: 0 },
-    visionCondition: { type: 'number', minimum: 0 },
+    sectionId: { type: 'string', const: NOMBRE_SECCION.SALUD_AUDIOVISUAL },
+    condicionAuditiva: { type: 'number', minimum: 0 },
+    condicionVisual: { type: 'number', minimum: 0 },
   },
-  required: ['sectionId', 'hearingCondition', 'visionCondition'],
-  additionalProperties: false,
+  required: ['sectionId', 'condicionAuditiva', 'condicionVisual'],
+  
 }
 const section11 = {
   type: 'object',
   properties: {
-    sectionId: { type: 'string', const: 'lifeThreateningRiskPrevention' },
-    smokingStatus: { type: 'number', minimum: 0 },
-    alcoholConsumption: { type: 'number', minimum: 0 },
+    sectionId: { type: 'string', const: NOMBRE_SECCION.PREVENCION_DE_RIESGOS },
+    estadoDeFumador: { type: 'number', minimum: 0 },
+    consumoDeAlcohol: { type: 'number', minimum: 0 },
   },
-  required: ['sectionId', 'smokingStatus', 'alcoholConsumption'],
-  additionalProperties: false,
+  required: ['sectionId', 'estadoDeFumador', 'consumoDeAlcohol'],
+  
 }
 const section12 = {
   type: 'object',
   properties: {
-    sectionId: { type: 'string', const: 'environmentalFactors' },
-    workEnvironmentQuality: { type: 'number', minimum: 0 },
-    noiseLevel: { type: 'number', minimum: 0 },
+    sectionId: { type: 'string', const: NOMBRE_SECCION.FACTORES_AMBIENTALES },
+    calidadDelAmbienteLaboral: { type: 'number', minimum: 0 },
+    nivelDeRuido: { type: 'number', minimum: 0 },
   },
-  required: ['sectionId', 'workEnvironmentQuality', 'noiseLevel'],
-  additionalProperties: false,
+  required: ['sectionId', 'calidadDelAmbienteLaboral', 'nivelDeRuido'],
+  
 }
 const section13 = {
   type: 'object',
   properties: {
-    sectionId: { type: 'string', const: 'promotionOfHumanFunctioning' },
-    mentalHealth: { type: 'number', minimum: 0 },
-    socialInteractionLevel: { type: 'number', minimum: 0 },
+    sectionId: { type: 'string', const: NOMBRE_SECCION.PROMOCION_HUMANA },
+    saludMental: { type: 'number', minimum: 0 },
+    nivelDeInteraccionSocial: { type: 'number', minimum: 0 },
   },
-  required: ['sectionId', 'mentalHealth', 'socialInteractionLevel'],
-  additionalProperties: false,
+  required: ['sectionId', 'saludMental', 'nivelDeInteraccionSocial'],
+  
 }
 
+
 const EXPECTED_INPUT_SCHEMA = {
-  section1,
+  // section1,
   section2,
   section3,
   section4,

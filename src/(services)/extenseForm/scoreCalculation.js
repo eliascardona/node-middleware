@@ -3,84 +3,84 @@ const { calculateScore, determineCategoryScore } = require('./(utils)/calculatio
 
 const scoreCalculation = (sectionKey, sectionId, trustedDataFields) => {
     switch (sectionId) {
-        case 'workCharacteristics': {
+        case 'condiciones_laborales': {
             const originalSectionIdentifier = typeof sectionKey === 'string' ? sectionKey : undefined
             if (originalSectionIdentifier != null) {
                 const obtainedScore = calculateScore(originalSectionIdentifier, trustedDataFields)
                 return determineCategoryScore(obtainedScore, 10)
             }
         }
-        case 'familySystemFactors': {
+        case 'factores_familiares': {
             const originalSectionIdentifier = typeof sectionKey === 'string' ? sectionKey : undefined
             if (originalSectionIdentifier != null) {
                 const obtainedScore = calculateScore(originalSectionIdentifier, trustedDataFields)
                 return determineCategoryScore(obtainedScore, 10)
             }
         }
-        case 'socioCulturalEconomicFactors': {
+        case 'factores_socioculturales': {
             const originalSectionIdentifier = typeof sectionKey === 'string' ? sectionKey : undefined
             if (originalSectionIdentifier != null) {
                 const obtainedScore = calculateScore(originalSectionIdentifier, trustedDataFields)
                 return determineCategoryScore(obtainedScore, 10)
             }
         }
-        case 'generalHealthStatus': {
+        case 'salud_general': {
             const originalSectionIdentifier = typeof sectionKey === 'string' ? sectionKey : undefined
             if (originalSectionIdentifier != null) {
                 const obtainedScore = calculateScore(originalSectionIdentifier, trustedDataFields)
                 return determineCategoryScore(obtainedScore, 10)
             }
         }
-        case 'universalSelfCare': {
+        case 'autocuidado_universal': {
             const originalSectionIdentifier = typeof sectionKey === 'string' ? sectionKey : undefined
             if (originalSectionIdentifier != null) {
                 const obtainedScore = calculateScore(originalSectionIdentifier, trustedDataFields)
                 return determineCategoryScore(obtainedScore, 10)
             }
         }
-        case 'cardiovascularSystem': {
+        case 'salud_cardiovascular': {
             const originalSectionIdentifier = typeof sectionKey === 'string' ? sectionKey : undefined
             if (originalSectionIdentifier != null) {
                 const obtainedScore = calculateScore(originalSectionIdentifier, trustedDataFields)
                 return determineCategoryScore(obtainedScore, 10)
             }
         }
-        case 'nutrition': {
+        case 'nutricion': {
             const originalSectionIdentifier = typeof sectionKey === 'string' ? sectionKey : undefined
             if (originalSectionIdentifier != null) {
                 const obtainedScore = calculateScore(originalSectionIdentifier, trustedDataFields)
                 return determineCategoryScore(obtainedScore, 10)
             }
         }
-        case 'lifestyle': {
+        case 'estilo_de_vida': {
             const originalSectionIdentifier = typeof sectionKey === 'string' ? sectionKey : undefined
             if (originalSectionIdentifier != null) {
                 const obtainedScore = calculateScore(originalSectionIdentifier, trustedDataFields)
                 return determineCategoryScore(obtainedScore, 10)
             }
         }
-        case 'auditoryVisualSystem': {
+        case 'salud_audiovisual': {
             const originalSectionIdentifier = typeof sectionKey === 'string' ? sectionKey : undefined
             if (originalSectionIdentifier != null) {
                 const obtainedScore = calculateScore(originalSectionIdentifier, trustedDataFields)
                 return determineCategoryScore(obtainedScore, 10)
             }
         }
-        case 'lifeThreateningRiskPrevention': {
+        case 'prevencion_de_riesgos': {
             const originalSectionIdentifier = typeof sectionKey === 'string' ? sectionKey : undefined
             if (originalSectionIdentifier != null) {
                 const obtainedScore = calculateScore(originalSectionIdentifier, trustedDataFields)
                 return determineCategoryScore(obtainedScore, 10)
             }
         }
-        case 'environmentalFactors': {
+        case 'factores_ambientales': {
             const originalSectionIdentifier = typeof sectionKey === 'string' ? sectionKey : undefined
             if (originalSectionIdentifier != null) {
                 const obtainedScore = calculateScore(originalSectionIdentifier, trustedDataFields)
                 return determineCategoryScore(obtainedScore, 10)
             }
         }
-        case 'promotionOfHumanFunctioning': {
+        case 'promocion_humana': {
             const originalSectionIdentifier = typeof sectionKey === 'string' ? sectionKey : undefined
             if (originalSectionIdentifier != null) {
                 const obtainedScore = calculateScore(originalSectionIdentifier, trustedDataFields)

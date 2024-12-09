@@ -6,7 +6,7 @@ const { extenseFormController } = require('../controllers/extenseFormController.
 router.get('/hola', (req, res) => {
     res.status(200).json({ message: 'hola' })
 })
-router.post('/forms', (req, res) => {
+router.post('/evaluar-puntajes', (req, res) => {
     extenseFormController(req, res)
 })
 

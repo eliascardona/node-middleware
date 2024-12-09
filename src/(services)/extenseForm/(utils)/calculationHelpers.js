@@ -1,71 +1,65 @@
 const ENTITIES_ENUM = {
-    section1: {
-        sectionId: 'identification',
-        employeeId: "12345",
-        name: "John Doe",
-        age: 35,
-    },
     section2: {
-        sectionId: 'workCharacteristics',
-        jobSatisfaction: 8,
-        workEnvironment: 8,
+        sectionId: 'condiciones_laborales',
+        satisfaccionLaboral: 8,
+        ambienteLaboral: 8,
     },
     section3: {
-        sectionId: 'familySystemFactors',
-        familySupport: 3,
-        numberOfDependents: 3,
+        sectionId: 'factores_familiares',
+        apoyoFamiliar: 3,
+        numeroDeDependientes: 3,
     },
     section4: {
-        sectionId: 'socioCulturalEconomicFactors',
-        income: 4500,
-        educationLevel: 5,
-        employmentStatus: 2,
+        sectionId: 'factores_socioculturales',
+        ingreso: 4500,
+        nivelEducativo: 5,
+        estadoLaboral: 2,
     },
     section5: {
-        sectionId: 'generalHealthStatus',
-        healthStatus: 3,
-        chronicConditions: [1, 2, 3],
-        recentHospitalization: 1,
+        sectionId: 'salud_general',
+        estadoDeSalud: 3,
+        // condicionesCronicas: [1, 2, 3],
+        // hospitalizacionReciente: 1,
     },
     section6: {
-        sectionId: 'universalSelfCare',
-        selfCareHabits: 2,
-        sleepQuality: 2,
+        sectionId: 'autocuidado_universal',
+        habitosDeAutocuidado: 2,
+        calidadDelSueno: 2,
     },
     section7: {
-        sectionId: 'cardiovascularSystem',
-        heartCondition: 10,
-        bloodPressure: 3,
+        sectionId: 'salud_cardiovascular',
+        condicionCardiaca: 10,
+        presionArterial: 3,
     },
     section8: {
-        sectionId: 'nutrition',
-        dailyFruitVegetableIntake: 5,
-        waterIntake: 1,
+        sectionId: 'nutricion',
+        consumoDiarioFrutasVerduras: 5,
+        consumoDeAgua: 1,
     },
     section9: {
-        sectionId: 'lifestyle',
-        activityLevel: 2,
-        restQuality: 2,
+        sectionId: 'estilo_de_vida',
+        nivelDeActividad: 2,
+        calidadDelDescanso: 2,
     },
     section10: {
-        sectionId: 'auditoryVisualSystem',
-        hearingCondition: 2,
-        visionCondition: 2,
+        sectionId: 'salud_audiovisual',
+        condicionAuditiva: 2,
+        condicionVisual: 2,
     },
     section11: {
-        sectionId: 'lifeThreateningRiskPrevention',
-        smokingStatus: 2,
-        alcoholConsumption: 2,
+        sectionId: 'prevencion_de_riesgos',
+        estadoDeFumador: 2,
+        consumoDeAlcohol: 2,
     },
     section12: {
-        sectionId: 'environmentalFactors',
-        workEnvironmentQuality: 2,
-        noiseLevel: 2,
+        sectionId: 'factores_ambientales',
+        calidadDelAmbienteLaboral: 2,
+        nivelDeRuido: 2,
     },
     section13: {
-        sectionId: 'promotionOfHumanFunctioning',
-        mentalHealth: 4,
-        socialInteractionLevel: 4,
+        sectionId: 'promocion_humana',
+        saludMental: 4,
+        nivelDeInteraccionSocial: 4,
     }
 }
 
@@ -97,9 +91,9 @@ const calculateScore = (originalSectionIdentifier, trustedDataFields) => {
     }
     let total = 0
 
-    if (targetScores.length) {
+    if (targetScores.length > 0) {
         targetScores.forEach((el, i) => {
-            if(typeof el === 'number') {
+            if (typeof el === 'number') {
                 total += el
             }
             if (Array.isArray(el)) {
@@ -110,7 +104,7 @@ const calculateScore = (originalSectionIdentifier, trustedDataFields) => {
                 })
             }
         })
-    }    
+    }
 
     return total
 }

@@ -23,6 +23,6 @@ app.use((err, req, res, next) => {
 	return res.status(500).json({ message: `-- GLOBAL SERVER ERROR ${err.message}` })
 })
 
-app.listen(8082, () => {
-    console.log(`Servicio MVC en puerto 8082`)
+app.listen(8085, () => {
+    console.log(`Servicio MVC en puerto 8085`)
 })
