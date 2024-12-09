@@ -2,14 +2,15 @@ const AJV = require('ajv')
 const ajv = new AJV()
 const { EXPECTED_INPUT_SCHEMA } = require('../schemas/ajv/extenseFormSchema')
 const { scoreCalculation } = require('./extenseForm/scoreCalculation')
+const { insertResultsCallback } = require('./database/insertResults')
 
 const processExtenseForm = async (formData) => {
-  const validationResults = {}
+  const validatedResults = {}
 
   for (let [sectionKey, sectionData] of Object.entries(formData)) {
     let schema = EXPECTED_INPUT_SCHEMA[sectionKey]
     if (!schema) {
-      validationResults[sectionKey] = {
+      validatedResults[sectionKey] = {
         status: 'error',
         message: `No existe un esquema para la sección "${sectionKey}"`
       }
@@ -21,13 +22,13 @@ const processExtenseForm = async (formData) => {
 
     if (valid) {
       let score = scoreCalculation(sectionKey, sectionData.sectionId, sectionData);
-      validationResults[sectionKey] = {
+      validatedResults[sectionKey] = {
         status: 'valid',
         score,
       }
 
     } else {
-      validationResults[sectionKey] = validate.errors.map((err) => {
+      validatedResults[sectionKey] = validate.errors.map((err) => {
         switch (err.keyword) {
           case "minimum":
             return `Error: ${err.message}. El valor proporcionado fue ${err.data}.`
@@ -41,8 +42,9 @@ const processExtenseForm = async (formData) => {
       })
     }
   }
+  insertResultsCallback(validatedResults)
 
-  return validationResults
+  return validatedResults
 }
 
 module.exports = { processExtenseForm }

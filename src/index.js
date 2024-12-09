@@ -1,28 +1,46 @@
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser')
-const morgan = require('morgan')
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
 const { corsMiddleware } = require('./middlewares/cors.js')
-const mainRouter = require('./routes/mainRouter.js')
+const { initPool, closePool } = require('./(services)/database/dbPool');
+const mainRouter = require('./routes/mainRouter');
 
+// Middlewares
+app.use(morgan('common'));
+app.use(bodyParser.json());
 
-/*  middleware code   */
-app.use(morgan('common'))
-app.use(bodyParser.json())
 app.use(function(req, res, next) {
 	corsMiddleware(req, res)
 	next()
 })
-/*  middleware code's END */
 
-app.use('/', mainRouter)
+// Rutas
+app.use('/', mainRouter);
 
-
+// Middleware global para errores
 app.use((err, req, res, next) => {
-	console.error('Middleware de error:', err.message)
-	return res.status(500).json({ message: `-- GLOBAL SERVER ERROR ${err.message}` })
-})
+    console.error('Middleware de error:', err.message);
+    return res.status(500).json({ message: `-- GLOBAL SERVER ERROR ${err.message}` });
+});
 
-app.listen(8085, () => {
-    console.log(`Servicio MVC en puerto 8085`)
-})
+// Inicialización del pool de conexiones y del servidor
+(async () => {
+    try {
+        await initPool();
+        console.log('Pool de conexiones inicializado');
+        app.listen(8085, () => {
+            console.log('Servicio MVC en puerto 8085');
+        });
+    } catch (err) {
+        console.error('Error al inicializar el pool de conexiones:', err.message);
+        process.exit(1);
+    }
+})();
+
+// Cierre del pool al finalizar
+process.on('SIGINT', async () => {
+    console.log('Cerrando el pool de conexiones...');
+    await closePool();
+    process.exit(0);
+});
